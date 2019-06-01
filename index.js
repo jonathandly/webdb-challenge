@@ -62,9 +62,13 @@ server.get('/api/projects/:id', async (req, res) => {
     try {
         const project = await db('project')
             .where({ id: req.params.id })
+            .first()
+            
+        const action = await db('action')
+            .where({ id: req.params.id })
             .first();
 
-        res.status(200).json(project);
+        res.status(200).json({ project, action });
     } catch(err) {
         console.log(err);
         res.status(500).json(err);
