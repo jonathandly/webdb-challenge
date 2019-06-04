@@ -7,7 +7,7 @@ exports.up = function(knex) {
 
     tbl.string('notes', 255)
 
-    tbl.boolean('completed')
+    tbl.boolean('completed').defaultTo(0)
 
     tbl
         .integer('project_id')

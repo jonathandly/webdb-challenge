@@ -7,7 +7,7 @@ exports.up = function(knex) {
 
     tbl.string('description', 255)
 
-    tbl.boolean('completed')
+    tbl.boolean('completed').defaultTo(0)
     
     tbl.timestamps(true, true)
   });

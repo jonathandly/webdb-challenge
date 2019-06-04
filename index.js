@@ -60,13 +60,13 @@ server.get('/api/projects', async (req, res) => {
 
 server.get('/api/projects/:id', async (req, res) => {
     try {
+        const id = req.params.id;
         const project = await db('project')
-            .where({ id: req.params.id })
+            .where({ id })
             .first()
             
         const action = await db('action')
-            .where({ id: req.params.id })
-            .first();
+            .where('project_id', '=', id)
 
         res.status(200).json({ project, action });
     } catch(err) {
